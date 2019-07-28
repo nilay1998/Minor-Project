@@ -8,8 +8,8 @@ const menuSchema = new mongoose.Schema({
   rollNumber:String,
   password:String,
   attendance:{
-    type:Number,
-    default:0
+    type:Array,
+    default: []
   }
 });
 

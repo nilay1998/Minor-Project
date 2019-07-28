@@ -9,9 +9,15 @@ router.put('/attendance', async(req,res) =>{
     let student = await Student.findOne({id:req.body.id});
     if(!student) return res.json({status:'0', message:'Wrong Id entered'});
 
-    console.log(student);
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+    var yyyy = today.getFullYear();
 
-    student.attendance = student.attendance + 1;
+    today = dd + '/' + mm + '/' + yyyy;
+    console.log(today);
+
+    student.attendance.push(today);
     await student.save();
 
     res.json({status:'1',message:'Attendance Updated'});
