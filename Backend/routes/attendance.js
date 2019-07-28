@@ -15,7 +15,14 @@ router.put('/attendance', async(req,res) =>{
     var yyyy = today.getFullYear();
 
     today = dd + '/' + mm + '/' + yyyy;
-    console.log(today);
+
+    if(student.attendance.length >=0)
+    {
+        var last = student.attendance[student.attendance.length - 1];
+        if(today==last){
+            return res.json({status:'0',message:'Two attendance caanot be marked on a single day'})
+        }
+    }
 
     student.attendance.push(today);
     await student.save();
