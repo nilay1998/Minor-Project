@@ -1,7 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const _ =require('lodash');
-const {Student, validate} = require('../models/student');
+const {Student, validateID, validateUser, validateLogin} = require('../models/student');
 //const bcrypt=require('bcrypt');
 
 router.get('/', async (req,res) =>{
@@ -10,7 +10,7 @@ router.get('/', async (req,res) =>{
 });
 
 router.post('/id', async (req,res) => {
-    const { error } = validate(req.body); 
+    const { error } = validateID(req.body); 
     if (error) return res.json({status:'0', message: error.details[0].message});
 
     const user = new Student(_.pick(req.body, ['id']));

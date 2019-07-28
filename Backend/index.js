@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser=require('body-parser');
-const register=require('./routes/register_Id');
+const registerId=require('./routes/register_Id');
+const registerUser=require('./routes/register_user');
 const mongoose=require('mongoose');
 
 mongoose.connect('mongodb://localhost/Project_Minor')
@@ -10,7 +11,8 @@ mongoose.connect('mongodb://localhost/Project_Minor')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-app.use('/api/register',register);
+app.use('/api',registerId);
+app.use('/api',registerUser);
 
 app.get('/api/get',async(req,res)=>{
     res.json('RUNNING');

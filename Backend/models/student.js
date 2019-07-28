@@ -2,13 +2,11 @@ const Joi = require('joi');
 const mongoose = require('mongoose');
 
 const menuSchema = new mongoose.Schema({
-  id: {
-    type: Number,
-    required: true
-  },
+  id:Number,
   name:String,
-  rollNumber:Number,
-  password:Number,
+  email:String,
+  rollNumber:String,
+  password:String,
   attendance:Number
 });
 

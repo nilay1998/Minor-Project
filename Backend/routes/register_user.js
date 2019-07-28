@@ -18,3 +18,5 @@ router.post('/user', async(req,res) =>{
 
     res.json({status:'1',message:'Registeration Success'});
 });
+
+module.exports=router;
