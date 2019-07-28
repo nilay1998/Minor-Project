@@ -7,7 +7,10 @@ const menuSchema = new mongoose.Schema({
   email:String,
   rollNumber:String,
   password:String,
-  attendance:Number
+  attendance:{
+    type:Number,
+    default:0
+  }
 });
 
 

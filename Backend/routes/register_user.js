@@ -17,9 +17,8 @@ router.put('/user', async(req,res) =>{
     const salt = await bcrypt.genSalt(10);
     req.body.password = await bcrypt.hash(req.body.password, salt);
 
-    student = await Student.findOneAndUpdate({id:req.body.id},(_.pick(req.body, ['name', 'email', 'password','rollNumber'])));
+    student = await Student.findOneAndUpdate({id:req.body.id},_.pick(req.body, ['name', 'email', 'password','rollNumber']));
     
-
     res.json({status:'1',message:'Registeration Success'});
 });
 
