@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser=require('body-parser');
-const register=require('./routes/register');
+const register=require('./routes/register_Id');
 const mongoose=require('mongoose');
 
 mongoose.connect('mongodb://localhost/Project_Minor')
