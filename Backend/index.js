@@ -3,6 +3,7 @@ const app = express();
 const bodyParser=require('body-parser');
 const registerId=require('./routes/register_Id');
 const registerUser=require('./routes/register_user');
+const login=require('./routes/login')
 const mongoose=require('mongoose');
 
 mongoose.connect('mongodb://localhost/Project_Minor')
@@ -13,6 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use('/api',registerId);
 app.use('/api',registerUser);
+app.use('/api',login);
 
 app.get('/api/get',async(req,res)=>{
     res.json('RUNNING');
