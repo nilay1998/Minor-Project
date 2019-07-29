@@ -5,6 +5,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public interface RequestService {
 
@@ -12,13 +13,13 @@ public interface RequestService {
     Call<Profile> requestGet();
 
 
-    @POST("user")
+    @PUT("user")
     @FormUrlEncoded
-    Call<Profile> createUser(@Field("id") String id,
-                             @Field("name") String name,
+    Call<Profile> createUser(@Field("name") String name,
                              @Field("email") String email,
+                             @Field("password") String password,
                              @Field("rollNumber") String rollNumber,
-                             @Field("password") String password);
+                             @Field("id") String id);
 
     @POST("login")
     @FormUrlEncoded

@@ -85,13 +85,22 @@ public class MainActivity extends AppCompatActivity {
                 final EditText editText_rollNumber=findViewById(R.id.rollNumber);
                 final EditText edittext_id = (EditText) findViewById(R.id.rid);
 
+
                 Button button_register=(Button) findViewById(R.id.register);
                 button_register.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Log.e("AHBDDKHB", "onClick: " +edittext_email.getText().toString()+" "+edittext_password.getText().toString()+" "+editText_rollNumber.getText().toString()+" "+edittext_id.getText().toString());
+
                         setContentView(login_view);
                         progressBar.setVisibility(View.VISIBLE);
-                        Call<Profile> call=requestService.createUser(edittext_id.getText().toString(),edittext_name.getText().toString(),edittext_email.getText().toString(),editText_rollNumber.getText().toString(),edittext_password.getText().toString());
+                        Call<Profile> call=requestService.createUser(
+                                edittext_name.getText().toString(),
+                                edittext_email.getText().toString(),
+                                edittext_password.getText().toString(),
+                                editText_rollNumber.getText().toString(),
+                                edittext_id.getText().toString());
+
                         call.enqueue(new Callback<Profile>() {
                             @Override
                             public void onResponse(Call<Profile> call, Response<Profile> response) {
