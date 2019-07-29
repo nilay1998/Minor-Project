@@ -20,7 +20,7 @@ router.put('/attendance', async(req,res) =>{
     {
         var last = student.attendance[student.attendance.length - 1];
         if(today==last){
-            return res.json({status:'0',message:'Two attendance caanot be marked on a single day'})
+            return res.json({status:'0',message:'Multiple attendance cannot be marked on a single day'})
         }
     }
 
