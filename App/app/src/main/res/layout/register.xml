@@ -27,6 +27,14 @@
         android:hint="EMAIL"/>
 
     <EditText
+        android:id="@+id/rollNumber"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center"
+        android:layout_width="256dp"
+        android:layout_height="40dp"
+        android:hint="ROLL NUMBER"/>
+
+    <EditText
         android:id="@+id/rpassword"
         android:layout_marginTop="32dp"
         android:inputType="textPassword"
@@ -36,7 +44,7 @@
         android:hint="PASSWORD"/>
 
     <EditText
-        android:id="@+id/id"
+        android:id="@+id/rid"
         android:layout_marginTop="32dp"
         android:layout_gravity="center"
         android:layout_width="256dp"

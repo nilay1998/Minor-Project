@@ -4,8 +4,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkClient {
-    public static final String BASE_URL = "http://192.168.69.219:3000/api/";
-    //    public static final String BASE_URL ="https://api.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=1c448390199c03a6f2d436c40defd90e&format=json&nojsoncallback=1&extras=url_m&text=test";
+
+    public static final String BASE_URL = "http://192.168.69.249:3000/api/";
     public static Retrofit retrofit;
     /*
     This public static method will return Retrofit client

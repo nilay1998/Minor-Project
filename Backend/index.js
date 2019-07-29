@@ -19,7 +19,7 @@ app.use('/api',login);
 app.use('/api',attendance);
 
 app.get('/api/get',async(req,res)=>{
-    res.json('RUNNING');
+    res.json({message:'RUNNING'});
 });
 
 const port = process.env.PORT || 3000;
