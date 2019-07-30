@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                         {
                             intent.putExtra("name",response.body().getName());
                             intent.putExtra("email",response.body().getEmail());
-                            intent.putExtra("phone",response.body().getRollNumber());
+                            intent.putExtra("rollNumber",response.body().getRollNumber());
                             startActivity(intent);
                         }
                     }
