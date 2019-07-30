@@ -13,13 +13,13 @@ public interface RequestService {
     Call<Profile> requestGet();
 
 
-    @PUT("user")
+    @POST("faculty")
     @FormUrlEncoded
     Call<Profile> createUser(@Field("name") String name,
                              @Field("email") String email,
                              @Field("password") String password);
 
-    @POST("login")
+    @POST("loginf")
     @FormUrlEncoded
     Call<Profile> loginUser(@Field("email") String email,
                             @Field("password") String password);

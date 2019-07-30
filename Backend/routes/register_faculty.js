@@ -29,7 +29,7 @@ router.post('/loginf', async (req,res) =>{
     const validPassword = await bcrypt.compare(req.body.password, faculty.password);
     if (!validPassword) return res.json({status:0,message:'Invalid email or password.'})
 
-    res.json({status:'1', message:'Login Success', name:user.name,email:user.email});
+    res.json({status:'1', message:'Login Success', name:faculty.name,email:faculty.email});
 });
 
 module.exports=router;
