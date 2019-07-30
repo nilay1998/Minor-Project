@@ -5,6 +5,7 @@ const registerId=require('./routes/register_Id');
 const registerUser=require('./routes/register_user');
 const login=require('./routes/login')
 const attendance=require('./routes/attendance');
+const faculty=require('./routes/register_faculty');
 const mongoose=require('mongoose');
 
 mongoose.connect('mongodb://localhost/Project_Minor')
@@ -17,6 +18,7 @@ app.use('/api',registerId);
 app.use('/api',registerUser);
 app.use('/api',login);
 app.use('/api',attendance);
+app.use('/api',faculty);
 
 app.get('/api/get',async(req,res)=>{
     res.json({message:'RUNNING'});
