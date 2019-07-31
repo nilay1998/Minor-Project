@@ -9,6 +9,13 @@ router.get('/getf', async (req,res) =>{
     if(faculty) return res.json({status:'1', message:'success' , isClass: faculty.isClass });
 });
 
+router.put('/isclass', async (req,res)=>{
+    const faculty = await Faculty.findOne();
+    faculty.isClass = req.body.isClass;
+    await faculty.save();
+    res.json({status:'1',message:'Success'});
+});
+
 router.post('/faculty', async (req,res) => {
     const { error } = validateUser(req.body); 
     if (error) return res.json({status:'0', message: error.details[0].message});

@@ -41,7 +41,7 @@ public class Classes extends AppCompatActivity {
 
         Retrofit retrofit = NetworkClient.getRetrofitClient();
         final RequestService requestService=retrofit.create(RequestService.class);
-        Call<Profile> call=requestService.reguestisClass();
+        final Call<Profile> call=requestService.reguestisClass();
         call.enqueue(new Callback<Profile>() {
             @Override
             public void onResponse(Call<Profile> call, Response<Profile> response) {
@@ -60,7 +60,19 @@ public class Classes extends AppCompatActivity {
         switch1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Boolean state=switch1.isChecked();
+                Call<Profile> call1=requestService.updateClass(state);
+                call1.enqueue(new Callback<Profile>() {
+                    @Override
+                    public void onResponse(Call<Profile> call, Response<Profile> response) {
+                        Log.e("HAHA", "onResponse: "+response.body().getMessage() );
+                    }
 
+                    @Override
+                    public void onFailure(Call<Profile> call, Throwable t) {
+
+                    }
+                });
             }
         });
     }

@@ -18,6 +18,10 @@ public interface RequestService {
     @GET("getall")
     Call<MyPojo> getStudents();
 
+    @PUT("isclass")
+    @FormUrlEncoded
+    Call<Profile> updateClass(@Field("isClass") Boolean xyz);
+
     @POST("faculty")
     @FormUrlEncoded
     Call<Profile> createUser(@Field("name") String name,
