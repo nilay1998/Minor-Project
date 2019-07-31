@@ -1,11 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser=require('body-parser');
-const registerId=require('./routes/register_Id');
-const registerUser=require('./routes/register_user');
-const login=require('./routes/login')
-const attendance=require('./routes/attendance');
-const faculty=require('./routes/register_faculty');
+const student=require('./routes/student');
+const teacher=require('./routes/teacher');
 const mongoose=require('mongoose');
 
 mongoose.connect('mongodb://localhost/Project_Minor')
@@ -14,11 +11,8 @@ mongoose.connect('mongodb://localhost/Project_Minor')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
-app.use('/api',registerId);
-app.use('/api',registerUser);
-app.use('/api',login);
-app.use('/api',attendance);
-app.use('/api',faculty);
+app.use('/api',student);
+app.use('/api',teacher);
 
 app.get('/api/get',async(req,res)=>{
     res.json({message:'RUNNING'});
