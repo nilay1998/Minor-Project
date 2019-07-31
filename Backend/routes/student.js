@@ -4,7 +4,7 @@ const _ =require('lodash');
 const {Student, validateID, validateUser, validateLogin} = require('../models/student');
 const bcrypt=require('bcrypt');
 
-router.get('/', async (req,res) =>{
+router.get('/getall', async (req,res) =>{
     const student =await Student.find();
     if(student) return res.json({status:'1', message:'success' ,allItems: student });
 });

@@ -5,6 +5,15 @@ public class Profile {
     private String message;
     private String name;
     private String email;
+    private Boolean isClass;
+
+    public Boolean getisClass() {
+        return isClass;
+    }
+
+    public void setClass(Boolean aClass) {
+        isClass = aClass;
+    }
 
     public String getStatus() {
         return status;

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Reterofit.Attendance"></activity>
+        <activity android:name=".Attendance"></activity>
         <activity android:name=".Classes" />
         <activity android:name=".MainActivity">
             <intent-filter>

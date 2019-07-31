@@ -4,18 +4,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="horizontal"
     tools:context=".Classes">
 
     <TextView
         android:id="@+id/oops"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="112dp"
-        android:background="@color/colorPrimaryDark"
-        android:textSize="24dp"
-        android:textStyle="italic"
+        android:layout_weight="3"
         android:gravity="center"
+        android:text="OOPs"
         android:textColor="#FFFFFF"
-        android:text="OOPs"/>
+        android:textSize="24dp"
+        android:textStyle="italic"/>
+
+    <Switch
+        android:id="@+id/switch1"
+        android:checked="false"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Switch"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp"
+        android:textStyle="italic" />
 
 </LinearLayout>

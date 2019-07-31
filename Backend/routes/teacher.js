@@ -4,6 +4,11 @@ const _ =require('lodash');
 const {Faculty, validateUser, validateLogin} = require('../models/teacher');
 const bcrypt=require('bcrypt');
 
+router.get('/getf', async (req,res) =>{
+    const faculty =await Faculty.findOne();
+    if(faculty) return res.json({status:'1', message:'success' , isClass: faculty.isClass });
+});
+
 router.post('/faculty', async (req,res) => {
     const { error } = validateUser(req.body); 
     if (error) return res.json({status:'0', message: error.details[0].message});
@@ -29,7 +34,7 @@ router.post('/loginf', async (req,res) =>{
     const validPassword = await bcrypt.compare(req.body.password, faculty.password);
     if (!validPassword) return res.json({status:0,message:'Invalid email or password.'})
 
-    res.json({status:'1', message:'Login Success', name:faculty.name,email:faculty.email});
+    res.json({status:'1', message:'Login Success', name: faculty.name, email: faculty.email});
 });
 
 module.exports=router;

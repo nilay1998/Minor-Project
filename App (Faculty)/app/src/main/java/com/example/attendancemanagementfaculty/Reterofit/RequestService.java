@@ -9,9 +9,14 @@ import retrofit2.http.PUT;
 
 public interface RequestService {
 
+    @GET("getf")
+    Call<Profile> reguestisClass();
+
     @GET("get")
     Call<Profile> requestGet();
 
+    @GET("getall")
+    Call<MyPojo> getStudents();
 
     @POST("faculty")
     @FormUrlEncoded
