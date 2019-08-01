@@ -125,16 +125,15 @@ public class Classes extends AppCompatActivity {
                 builder.setMessage("Number of Classes")
                         .setPositiveButton("Update", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-
-
+                                Call<Profile> call3=requestService.addClass(Integer.parseInt(edittext.getText().toString()) - Integer.parseInt(classNumber.getText().toString()));
+                                Log.e("HAHA", "numberOfClasses: " + edittext.getText().toString());
+                                Log.e("HAHA", "numberOfClasses: " + classNumber.getText().toString());
                                 classNumber.setText(String.valueOf(Integer.parseInt(edittext.getText().toString())));
                                 numberOfClasses=Integer.parseInt(classNumber.getText().toString());
-                                Log.e("HAHA", "numberOfClasses: " + numberOfClasses);
-                                Call<Profile> call3=requestService.addClass(Integer.parseInt(edittext.getText().toString()) -Integer.parseInt(classNumber.getText().toString()));
                                 call3.enqueue(new Callback<Profile>() {
                                     @Override
                                     public void onResponse(Call<Profile> call, Response<Profile> response) {
-                                        Log.e("HAHA", "onResponse: Class added" );
+                                        Log.e("HAHA", "onResponse: Class added" +response.body().getMessage());
                                     }
 
                                     @Override
