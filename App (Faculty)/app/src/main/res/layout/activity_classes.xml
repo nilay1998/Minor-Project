@@ -21,6 +21,7 @@
         android:textStyle="italic"/>
 
     <Switch
+        android:paddingRight="4dp"
         android:id="@+id/switch1"
         android:checked="false"
         android:layout_width="0dp"

@@ -3,6 +3,7 @@ package com.example.attendancemanagementfaculty;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.rollNumber.setText(arrayList.get(i).getRollNumber());
         viewHolder.name.setText(arrayList.get(i).getName());
-        //viewHolder.attendance.setText(arrayList.get(i).getAttendance().length);
+        Log.e("YPYPY", "onBindViewHolder: "+arrayList.get(i).getAttendance().length);
+        viewHolder.attendance.setText(String.valueOf(arrayList.get(i).getAttendance().length));
     }
 
     @Override
@@ -48,7 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             rollNumber=itemView.findViewById(R.id.rollNumber);
             name=itemView.findViewById(R.id.namee);
-            //attendance=itemView.findViewById(R.id.attendance);
+            attendance=itemView.findViewById(R.id.attendance);
         }
     }
 }

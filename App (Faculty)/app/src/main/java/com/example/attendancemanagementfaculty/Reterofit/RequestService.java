@@ -22,6 +22,10 @@ public interface RequestService {
     @FormUrlEncoded
     Call<Profile> updateClass(@Field("isClass") Boolean xyz);
 
+    @PUT("addClass")
+    @FormUrlEncoded
+    Call<Profile> addClass(@Field("addClass") int xyz);
+
     @POST("faculty")
     @FormUrlEncoded
     Call<Profile> createUser(@Field("name") String name,

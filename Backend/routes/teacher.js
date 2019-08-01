@@ -16,6 +16,13 @@ router.put('/isclass', async (req,res)=>{
     res.json({status:'1',message:'Success'});
 });
 
+router.put('/addClass', async (req,res)=>{
+    const faculty=await Faculty.findOne();
+    faculty.classes += parseInt(req.body.addClass);
+    await faculty.save();
+    res.json({status:'1',message:'Success'});
+});
+
 router.post('/faculty', async (req,res) => {
     const { error } = validateUser(req.body); 
     if (error) return res.json({status:'0', message: error.details[0].message});

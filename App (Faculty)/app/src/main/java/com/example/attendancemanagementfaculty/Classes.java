@@ -73,6 +73,22 @@ public class Classes extends AppCompatActivity {
 
                     }
                 });
+
+                if(state == true)
+                {
+                    Call<Profile> call2=requestService.addClass(1);
+                    call2.enqueue(new Callback<Profile>() {
+                        @Override
+                        public void onResponse(Call<Profile> call, Response<Profile> response) {
+                            Log.e("HAHA", "onResponse: Class added" );
+                        }
+
+                        @Override
+                        public void onFailure(Call<Profile> call, Throwable t) {
+
+                        }
+                    });
+                }
             }
         });
     }
