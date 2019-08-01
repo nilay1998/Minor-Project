@@ -6,6 +6,15 @@ public class Profile {
     private String name;
     private String email;
     private Boolean isClass;
+    private int classes;
+
+    public int getClasses() {
+        return classes;
+    }
+
+    public void setClasses(int classes) {
+        this.classes = classes;
+    }
 
     public Boolean getisClass() {
         return isClass;
