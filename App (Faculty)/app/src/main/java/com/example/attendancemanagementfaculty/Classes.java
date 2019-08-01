@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -23,7 +24,7 @@ import retrofit2.Retrofit;
 
 public class Classes extends AppCompatActivity {
 
-    public int numberOfClasses;
+    public static int numberOfClasses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,13 +101,14 @@ public class Classes extends AppCompatActivity {
                         }
                     });
                     classNumber.setText(String.valueOf(Integer.parseInt(classNumber.getText().toString())+1));
-                    numberOfClasses=Integer.parseInt(classNumber.getText().toString())+1;
+                    numberOfClasses=Integer.parseInt(classNumber.getText().toString());
                     Log.e("HAHA", "numberOfClasses: " + numberOfClasses);
                 }
             }
         });
 
         final EditText edittext = new EditText(getApplicationContext());
+        edittext.setInputType(InputType.TYPE_CLASS_NUMBER);
         classNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

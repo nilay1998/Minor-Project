@@ -13,6 +13,8 @@ import com.example.attendancemanagementfaculty.Reterofit.AllItems;
 
 import java.util.ArrayList;
 
+import static com.example.attendancemanagementfaculty.Classes.numberOfClasses;
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     ArrayList<AllItems> arrayList=new ArrayList<>();
 
@@ -32,8 +34,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         viewHolder.rollNumber.setText(arrayList.get(i).getRollNumber());
         viewHolder.name.setText(arrayList.get(i).getName());
-        Log.e("YPYPY", "onBindViewHolder: "+arrayList.get(i).getAttendance().length);
-        viewHolder.attendance.setText(String.valueOf(arrayList.get(i).getAttendance().length));
+        Log.e("HELLO", "onBindViewHolder: "+ numberOfClasses);
+        double attendance=((double)arrayList.get(i).getAttendance().length/(double)numberOfClasses)*100;
+        if(attendance==0)
+            viewHolder.attendance.setText("0/"+""+numberOfClasses+": "+0+"%");
+        else
+        {
+            String abc=String.valueOf(attendance).substring(0,5);
+            viewHolder.attendance.setText(""+arrayList.get(i).getAttendance().length+"/"+""+numberOfClasses+": "+abc+"%");
+
+        }
     }
 
     @Override
