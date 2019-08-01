@@ -36,13 +36,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         viewHolder.name.setText(arrayList.get(i).getName());
         Log.e("HELLO", "onBindViewHolder: "+ numberOfClasses);
         double attendance=((double)arrayList.get(i).getAttendance().length/(double)numberOfClasses)*100;
+        String abc=String.valueOf(attendance);
         if(attendance==0)
             viewHolder.attendance.setText("0/"+""+numberOfClasses+": "+0+"%");
+        else if(abc.length()>5)
+        {
+            abc=String.valueOf(attendance).substring(0,5);
+            viewHolder.attendance.setText(""+arrayList.get(i).getAttendance().length+"/"+""+numberOfClasses+": "+abc+"%");
+        }
         else
         {
-            String abc=String.valueOf(attendance).substring(0,5);
+            abc=String.valueOf(attendance);
             viewHolder.attendance.setText(""+arrayList.get(i).getAttendance().length+"/"+""+numberOfClasses+": "+abc+"%");
-
         }
     }
 

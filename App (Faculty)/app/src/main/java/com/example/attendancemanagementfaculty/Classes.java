@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -30,6 +31,7 @@ public class Classes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classes);
+
         Retrofit retrofit = NetworkClient.getRetrofitClient();
         final RequestService requestService=retrofit.create(RequestService.class);
 
@@ -112,14 +114,19 @@ public class Classes extends AppCompatActivity {
         classNumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(edittext.getParent() != null) {
+                    ((ViewGroup)edittext.getParent()).removeView(edittext); // <- fix
+                }
                 edittext.setText(String.valueOf(Integer.parseInt(classNumber.getText().toString())));
                 edittext.setSelection(edittext.getText().length());
                 edittext.setSelectAllOnFocus(true);
-                AlertDialog.Builder builder = new AlertDialog.Builder(Classes.this);
+                final AlertDialog.Builder builder = new AlertDialog.Builder(Classes.this);
                 builder.setView(edittext,50,0,50,0);
                 builder.setMessage("Number of Classes")
                         .setPositiveButton("Update", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
+
+
                                 classNumber.setText(String.valueOf(Integer.parseInt(edittext.getText().toString())));
                                 numberOfClasses=Integer.parseInt(classNumber.getText().toString());
                                 Log.e("HAHA", "numberOfClasses: " + numberOfClasses);
@@ -143,7 +150,7 @@ public class Classes extends AppCompatActivity {
                             }
                         });
                 // Create the AlertDialog object and return it
-                builder.show()  ;
+                builder.show();
             }
         });
     }
