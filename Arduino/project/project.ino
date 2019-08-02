@@ -86,7 +86,7 @@ void Enroll()
           lcd.println("Enrolling Succes");
           lcd.setCursor(0,1);
           lcd.print("sful");
-          String val=String(enrollid);
+          String val=String(enrollid)+":enroll";
           mySerial.print(val);
           delay(1000);
         }
@@ -135,6 +135,8 @@ void Identify()
       lcd.println(id);
       if(id==0)
       return Enroll();
+      String val=String(id)+":add";
+      mySerial.print(val);
       delay(1500);
     }
     else
