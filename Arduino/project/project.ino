@@ -19,64 +19,11 @@ void setup()
   lcd.print("Hey");
 
   delay(2000);
-
-  //Enroll();          //begin enrolling fingerprint
-}
-
-void Identify()
-{
-  if(fps.IsPressFinger() == false)
-  {
-    lcd.clear();
-    lcd.println("Please press fin");
-    lcd.setCursor(0,1);
-    lcd.print("ger"); 
-  }
-  else
-  {
-    lcd.clear();
-    lcd.print("Remove finger");
-    delay(2000);
-    lcd.clear();
-    lcd.println("Please press fin");
-    lcd.setCursor(0,1);
-    lcd.print("ger"); 
-  }
-  while(fps.IsPressFinger() == false) delay(100);
-  // Identify fingerprint test
-  if (fps.IsPressFinger())
-  {
-    fps.CaptureFinger(false);
-    int id = fps.Identify1_N();
-    
-       /*Note:  GT-521F52 can hold 3000 fingerprint templates
-                GT-521F32 can hold 200 fingerprint templates
-                 GT-511C3 can hold 200 fingerprint templates. 
-                GT-511C1R can hold 20 fingerprint templates.
-       Make sure to change the id depending on what
-       model you are using */
-    if (id <200) //<- change id value depending model you are using
-    {//if the fingerprint matches, provide the matching template ID
-      lcd.clear();
-      lcd.print("Verified ID:");
-      lcd.println(id);
-      delay(1500);
-    }
-    else
-    {//if unable to recognize
-      lcd.println("Finger not found");
-    }
-  }
-  else
-  {
-    lcd.println("Unable to identify");
-  }
-  return;
-  delay(100);
 }
 
 void Enroll()
 {
+  delay(1000);
   // Enroll test
 
   // find open enroll id
@@ -166,10 +113,51 @@ void Enroll()
           lcd.print("e first finger");}
 }
 
+void Identify()
+{
+  while(fps.IsPressFinger() == false)
+  {
+    lcd.clear();
+    lcd.println("Please press fin");
+    lcd.setCursor(0,1);
+    lcd.print("ger"); 
+    delay(100);
+  }
+  if (fps.IsPressFinger())
+  {
+    fps.CaptureFinger(false);
+    int id = fps.Identify1_N();
+    
+    if (id <200) //<- change id value depending model you are using
+    {//if the fingerprint matches, provide the matching template ID
+      lcd.clear();
+      lcd.print("Verified ID:");
+      lcd.println(id);
+      if(id==0)
+      return Enroll();
+      delay(1500);
+    }
+    else
+    {//if unable to recognize
+      lcd.clear();
+      lcd.println("Finger not found");
+      delay(500);
+    }
+  }
+  else
+  {
+    lcd.clear();
+    lcd.println("Unable to identify");
+    delay(500);
+  }
+  delay(100);
+}
+
 
 void loop()
 {
   lcd.clear();
-  Enroll();
-  //Identify();
+//  Enroll();
+  Identify();
+  delay(1000);
 }
