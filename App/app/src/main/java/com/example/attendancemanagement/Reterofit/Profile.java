@@ -6,6 +6,33 @@ public class Profile {
     private String name;
     private String email;
     private String rollNumber;
+    private String[] attendance;
+    private Boolean isClass;
+    private int classes;
+
+    public int getClasses() {
+        return classes;
+    }
+
+    public void setClasses(int classes) {
+        this.classes = classes;
+    }
+
+    public Boolean getisClass() {
+        return isClass;
+    }
+
+    public void setClass(Boolean aClass) {
+        isClass = aClass;
+    }
+
+    public String[] getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(String[] attendance) {
+        this.attendance = attendance;
+    }
 
     public String getStatus() {
         return status;

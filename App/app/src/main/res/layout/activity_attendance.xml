@@ -1,9 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Attendance">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/percent"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:text="Attendance: "
+        android:textStyle="italic"
+        android:textSize="36dp"
+        android:gravity="center_vertical"/>
+
+    <TextView
+        android:id="@+id/total"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:text="Classes held: "
+        android:textStyle="italic"
+        android:textSize="36dp"
+        android:gravity="center_vertical"/>
+
+    <TextView
+        android:id="@+id/attended"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:text="Classes attended: "
+        android:textStyle="italic"
+        android:textSize="36dp"
+        android:gravity="center_vertical"/>
+
+</LinearLayout>

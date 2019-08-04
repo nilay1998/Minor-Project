@@ -6,11 +6,18 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface RequestService {
 
     @GET("get")
     Call<Profile> requestGet();
+
+    @GET("get/{email}")
+    Call<Profile> reguestId(@Path("email") String email);
+
+    @GET("getf")
+    Call<Profile> reguestisClass();
 
 
     @PUT("user")

@@ -9,6 +9,11 @@ router.get('/getall', async (req,res) =>{
     if(student) return res.json({status:'1', message:'success' ,allItems: student });
 });
 
+router.get('/get/:email', async (req,res) =>{
+    const student =await Student.findOne({ email: req.params.email });
+    if(student) return res.json({status:'1', message:'success' ,attendance: student.attendance });
+});
+
 router.post('/login', async (req,res) =>{
     const {error} = validateLogin(req.body);
     if (error) return res.json({status:'0', message: error.details[0].message});
