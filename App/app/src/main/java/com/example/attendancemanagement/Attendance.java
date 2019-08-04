@@ -20,7 +20,7 @@ public class Attendance extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
-        TextView percent=findViewById(R.id.percent);
+        final TextView percent=findViewById(R.id.percent);
         final TextView total=findViewById(R.id.total);
         final TextView attend=findViewById(R.id.attended);
 
@@ -51,8 +51,11 @@ public class Attendance extends AppCompatActivity {
         call1.enqueue(new Callback<Profile>() {
             @Override
             public void onResponse(Call<Profile> call, Response<Profile> response) {
-                int deno=response.body().getClasses();
+                deno=response.body().getClasses();
                 total.append(String.valueOf(deno));
+                double per=(double)attended/(double)deno;
+                percent.append(String.valueOf(per).substring(0,5));
+
             }
 
             @Override
