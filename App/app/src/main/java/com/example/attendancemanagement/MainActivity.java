@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this,""+response.body().getMessage(),Toast.LENGTH_SHORT).show();
                         if(response.body().getStatus().equals("1"))
                         {
-                            intent.putExtra("name",response.body().getName());
-                            intent.putExtra("email",response.body().getEmail());
-                            intent.putExtra("rollNumber",response.body().getRollNumber());
+                            intent.putExtra("name" , response.body().getName());
+                            intent.putExtra("email" , response.body().getEmail());
+                            intent.putExtra("rollNumber" , response.body().getRollNumber());
                             startActivity(intent);
                         }
                     }

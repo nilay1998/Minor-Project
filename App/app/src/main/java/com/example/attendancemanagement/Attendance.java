@@ -9,5 +9,10 @@ public class Attendance extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
+
+        Bundle extras=getIntent().getExtras();
+        String userName=extras.getString("name");
+        String userEmail=extras.getString("email");
+        String rollNumber=extras.getString("rollNumber");
     }
 }
