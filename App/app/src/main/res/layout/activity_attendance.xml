@@ -35,4 +35,42 @@
         android:textSize="36dp"
         android:gravity="center_vertical"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
+        android:background="#000"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Dates"
+            android:textColor="#FFF"
+            android:textStyle="italic"
+            android:textSize="18dp"
+            android:gravity="center"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="Present/Absent"
+            android:textColor="#FFF"
+            android:textStyle="italic"
+            android:textSize="18dp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

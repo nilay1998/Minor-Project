@@ -7,6 +7,16 @@ public class Profile {
     private String email;
     private String rollNumber;
     private String[] attendance;
+
+    public String[] getDates() {
+        return dates;
+    }
+
+    public void setDates(String[] dates) {
+        this.dates = dates;
+    }
+
+    private String[] dates;
     private Boolean isClass;
     private int classes;
 

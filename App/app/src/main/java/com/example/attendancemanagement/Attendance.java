@@ -1,7 +1,12 @@
 package com.example.attendancemanagement;
 
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.attendancemanagement.Reterofit.NetworkClient;
@@ -16,6 +21,7 @@ import retrofit2.Retrofit;
 public class Attendance extends AppCompatActivity {
     int attended;
     int deno;
+    String arr[];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +29,7 @@ public class Attendance extends AppCompatActivity {
         final TextView percent=findViewById(R.id.percent);
         final TextView total=findViewById(R.id.total);
         final TextView attend=findViewById(R.id.attended);
+        final LinearLayout linearLayout=findViewById(R.id.scroll);
 
 
         Bundle extras=getIntent().getExtras();
@@ -37,6 +44,7 @@ public class Attendance extends AppCompatActivity {
         call.enqueue(new Callback<Profile>() {
             @Override
             public void onResponse(Call<Profile> call, Response<Profile> response) {
+                arr=response.body().getAttendance();
                 attended=response.body().getAttendance().length;
                 attend.append(String.valueOf(attended));
             }
@@ -54,8 +62,26 @@ public class Attendance extends AppCompatActivity {
                 deno=response.body().getClasses();
                 total.append(String.valueOf(deno));
                 double per=(double)attended/(double)deno;
-                percent.append(String.valueOf(per).substring(0,5));
-
+                percent.append(String.valueOf(per).substring(0,5)+"%");
+                for (int i=0;i<response.body().getDates().length;i++)
+                {
+                    TextView date=new TextView(getApplicationContext());
+                    date.setText(response.body().getDates()[i]);
+                    if(search(response.body().getDates()[i],arr)==-1)
+                        date.append("                Absent");
+                    else
+                        date.append("                Present");
+                    date.setId(i);
+                    date.setPadding(64,16,0,16);
+                    date.setTextSize(32);
+                    date.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
+                    date.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                    View v = new View(getApplicationContext());
+                    v.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,5));
+                    v.setBackgroundColor(Color.parseColor("#B3B3B3"));
+                    linearLayout.addView(date);
+                    linearLayout.addView(v);
+                }
             }
 
             @Override
@@ -63,5 +89,17 @@ public class Attendance extends AppCompatActivity {
 
             }
         });
+    }
+
+    int search(String val, String arr[])
+    {
+        int index = -1;
+        for (int i=0;i<arr.length;i++) {
+            if (arr[i].equals(val)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 }

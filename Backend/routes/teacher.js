@@ -6,7 +6,7 @@ const bcrypt=require('bcrypt');
 
 router.get('/getf', async (req,res) =>{
     const faculty =await Faculty.findOne();
-    if(faculty) return res.json({status:'1', message:'success' , isClass: faculty.isClass, classes:faculty.classes });
+    if(faculty) return res.json({status:'1', message:'success' , isClass: faculty.isClass, classes:faculty.classes, dates:faculty.dates });
 });
 
 router.put('/isclass', async (req,res)=>{
