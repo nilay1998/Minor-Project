@@ -62,17 +62,24 @@ public class Attendance extends AppCompatActivity {
                 deno=response.body().getClasses();
                 total.append(String.valueOf(deno));
                 double per=(double)attended/(double)deno;
-                percent.append(String.valueOf(per).substring(0,5)+"%");
+                if(String.valueOf(per).length()>5)
+                    percent.append(String.valueOf(per).substring(0,5)+"%");
+                else
+                    percent.append(String.valueOf(per)+"%");
                 for (int i=0;i<response.body().getDates().length;i++)
                 {
                     TextView date=new TextView(getApplicationContext());
-                    date.setText(response.body().getDates()[i]);
-                    if(search(response.body().getDates()[i],arr)==-1)
-                        date.append("                Absent");
+                    if(i<9)
+                        date.setText(" "+(i+1)+":  ");
                     else
-                        date.append("                Present");
+                        date.setText(""+(i+1)+": ");
+                    date.append(response.body().getDates()[i]);
+                    if(search(response.body().getDates()[i],arr)==-1)
+                        date.append("            Absent");
+                    else
+                        date.append("            Present");
                     date.setId(i);
-                    date.setPadding(64,16,0,16);
+                    date.setPadding(28,16,0,16);
                     date.setTextSize(32);
                     date.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
                     date.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
