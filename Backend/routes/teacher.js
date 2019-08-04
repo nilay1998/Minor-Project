@@ -19,6 +19,16 @@ router.put('/isclass', async (req,res)=>{
 router.put('/addClass', async (req,res)=>{
     const faculty=await Faculty.findOne();
     faculty.classes += parseInt(req.body.addClass);
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+    var yyyy = today.getFullYear();
+
+    today = dd + '/' + mm + '/' + yyyy;
+    
+    faculty.dates.push(today);
+
     await faculty.save();
     res.json({status:'1',message:'Success'});
 });

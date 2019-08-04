@@ -6,7 +6,11 @@ const menuSchema = new mongoose.Schema({
   email: String,
   password: String,
   classes: {type:Number, default:0},
-  isClass: {type:Boolean, default:false}
+  isClass: {type:Boolean, default:false},
+  dates:{
+    type:Array,
+    default: []
+  }
 });
 
 
