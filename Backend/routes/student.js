@@ -2,6 +2,7 @@ const express=require('express');
 const router=express.Router();
 const _ =require('lodash');
 const {Student, validateID, validateUser, validateLogin} = require('../models/student');
+const {Faculty} = require('../models/teacher');
 const bcrypt=require('bcrypt');
 
 router.get('/getall', async (req,res) =>{
@@ -59,11 +60,17 @@ router.put('/attendance', async(req,res) =>{
 
     today = dd + '/' + mm + '/' + yyyy;
 
+    const faculty=await Faculty.findOne();
+    if(faculty.isClass==false)
+    {
+        return res.json({status:'0',message:'Caught cheating'});
+    }
+
     if(student.attendance.length >=0)
     {
         var last = student.attendance[student.attendance.length - 1];
         if(today==last){
-            return res.json({status:'0',message:'Multiple attendance cannot be marked on a single day'})
+            return res.json({status:'0',message:'Multiple attendance cannot be marked on a single day'});
         }
     }
 
