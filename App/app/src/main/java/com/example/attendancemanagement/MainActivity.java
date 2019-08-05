@@ -32,75 +32,6 @@ import com.example.attendancemanagement.Reterofit.RequestService;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
-//public class MainActivity extends AppCompatActivity {
-//
-//    private ImageView bookIconImageView;
-//    private TextView bookITextView;
-//    private ProgressBar loadingProgressBar;
-//    private RelativeLayout rootView, afterAnimationView;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        setContentView(R.layout.activity_main);
-//        initViews();
-//        new CountDownTimer(5000, 1000) {
-//
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//                bookITextView.setVisibility(GONE);
-//                loadingProgressBar.setVisibility(GONE);
-//                rootView.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorSplashText));
-//                bookIconImageView.setImageResource(R.drawable.download1);
-//                startAnimation();
-//            }
-//        }.start();
-//    }
-//
-//    private void initViews() {
-//        bookIconImageView = findViewById(R.id.bookIconImageView);
-//        bookITextView = findViewById(R.id.bookITextView);
-//        loadingProgressBar = findViewById(R.id.loadingProgressBar);
-//        rootView = findViewById(R.id.rootView);
-//        afterAnimationView = findViewById(R.id.afterAnimationView);
-//    }
-//
-//    private void startAnimation() {
-//        ViewPropertyAnimator viewPropertyAnimator = bookIconImageView.animate();
-//        viewPropertyAnimator.x(50f);
-//        viewPropertyAnimator.y(100f);
-//        viewPropertyAnimator.setDuration(1000);
-//        viewPropertyAnimator.setListener(new Animator.AnimatorListener() {
-//            @Override
-//            public void onAnimationStart(Animator animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationEnd(Animator animation) {
-//                afterAnimationView.setVisibility(VISIBLE);
-//            }
-//
-//            @Override
-//            public void onAnimationCancel(Animator animation) {
-//
-//            }
-//
-//            @Override
-//            public void onAnimationRepeat(Animator animation) {
-//
-//            }
-//        });
-//    }
-//}
 
 public class MainActivity extends AppCompatActivity {
     private View login_view;
@@ -109,19 +40,24 @@ public class MainActivity extends AppCompatActivity {
     private TextView bookITextView;
     private ProgressBar loadingProgressBar;
     private RelativeLayout rootView, afterAnimationView;
+    private TextView wel;
+    @Override
+    public void onBackPressed() {
+        setContentView(login_view);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         login_view=getLayoutInflater().inflate(R.layout.activity_main,null);
         register_view=getLayoutInflater().inflate(R.layout.register,null);
         setContentView(login_view);
         initViews();
 
-        new CountDownTimer(5000, 1000) {
+        new CountDownTimer(2000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -132,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 bookITextView.setVisibility(GONE);
                 loadingProgressBar.setVisibility(GONE);
                 rootView.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorSplashText));
-                bookIconImageView.setImageResource(R.drawable.download1);
+                bookIconImageView.setImageResource(R.drawable.download);
                 startAnimation();
             }
         }.start();
@@ -225,29 +161,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button test=(Button) findViewById(R.id.test);
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Call<Profile> call=requestService.requestGet();
-                call.enqueue(new Callback<Profile>() {
-                    @Override
-                    public void onResponse(Call<Profile> call, Response<Profile> response) {
-                        Toast.makeText(MainActivity.this,""+response.body().getMessage(),Toast.LENGTH_SHORT).show();
-                        if(response.isSuccessful())
-                            Log.e("Error","NOT SUCCESSFUL");
-                        else
-                            Log.e("Error", "SUCCESSFUL");
-                    }
-
-                    @Override
-                    public void onFailure(Call<Profile> call, Throwable t) {
-                        Toast.makeText(MainActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
-                        Log.e("Error",t.getMessage());
-                    }
-                });
-            }
-        });
+        //Button test=(Button) findViewById(R.id.test);
+//        test.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Call<Profile> call=requestService.requestGet();
+//                call.enqueue(new Callback<Profile>() {
+//                    @Override
+//                    public void onResponse(Call<Profile> call, Response<Profile> response) {
+//                        Toast.makeText(MainActivity.this,""+response.body().getMessage(),Toast.LENGTH_SHORT).show();
+//                        if(response.isSuccessful())
+//                            Log.e("Error","NOT SUCCESSFUL");
+//                        else
+//                            Log.e("Error", "SUCCESSFUL");
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Profile> call, Throwable t) {
+//                        Toast.makeText(MainActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
+//                        Log.e("Error",t.getMessage());
+//                    }
+//                });
+//            }
+//        });
     }
 
     private void initViews() {
@@ -258,9 +194,10 @@ public class MainActivity extends AppCompatActivity {
         afterAnimationView = findViewById(R.id.afterAnimationView);
     }
 
+
     private void startAnimation() {
         ViewPropertyAnimator viewPropertyAnimator = bookIconImageView.animate();
-        viewPropertyAnimator.x(50f);
+        viewPropertyAnimator.x(470f);
         viewPropertyAnimator.y(100f);
         viewPropertyAnimator.setDuration(1000);
         viewPropertyAnimator.setListener(new Animator.AnimatorListener() {
