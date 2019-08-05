@@ -26,6 +26,14 @@ router.put('/addClass', async (req,res)=>{
     var yyyy = today.getFullYear();
 
     today = dd + '/' + mm + '/' + yyyy;
+
+    if(faculty.dates.length >=0)
+    {
+        var last = faculty.dates[faculty.dates.length - 1];
+        if(today==last){
+            return res.json({status:'0',message:'Multiple classes cannot be held on a single day'});
+        }
+    }
     
     faculty.dates.push(today);
 
