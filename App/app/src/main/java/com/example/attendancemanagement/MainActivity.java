@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView bookITextView;
     private ProgressBar loadingProgressBar;
     private RelativeLayout rootView, afterAnimationView;
-    private TextView wel;
+
     @Override
     public void onBackPressed() {
         setContentView(login_view);

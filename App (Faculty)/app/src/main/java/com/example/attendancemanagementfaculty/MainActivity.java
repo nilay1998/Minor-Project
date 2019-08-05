@@ -1,13 +1,20 @@
 package com.example.attendancemanagementfaculty;
 
+import android.animation.Animator;
 import android.content.Intent;
+import android.os.CountDownTimer;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.attendancemanagementfaculty.Reterofit.NetworkClient;
@@ -19,11 +26,22 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 public class MainActivity extends AppCompatActivity {
 
     private View login_view;
     private View register_view;
+    private ImageView bookIconImageView;
+    private TextView bookITextView;
+    private ProgressBar loadingProgressBar;
+    private RelativeLayout rootView, afterAnimationView;
 
+    @Override
+    public void onBackPressed() {
+        setContentView(login_view);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +49,24 @@ public class MainActivity extends AppCompatActivity {
         login_view=getLayoutInflater().inflate(R.layout.activity_main,null);
         register_view=getLayoutInflater().inflate(R.layout.register,null);
         setContentView(login_view);
+
+        initViews();
+
+        new CountDownTimer(2000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                bookITextView.setVisibility(GONE);
+                loadingProgressBar.setVisibility(GONE);
+                rootView.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorSplashText));
+                bookIconImageView.setImageResource(R.drawable.iiitm);
+                startAnimation();
+            }
+        }.start();
 
         final Intent intent = new Intent(this, Classes.class);
 
@@ -113,28 +149,41 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+    }
 
-        Button test=(Button) findViewById(R.id.test);
-        test.setOnClickListener(new View.OnClickListener() {
+    private void initViews() {
+        bookIconImageView = findViewById(R.id.bookIconImageView);
+        bookITextView = findViewById(R.id.bookITextView);
+        loadingProgressBar = findViewById(R.id.loadingProgressBar);
+        rootView = findViewById(R.id.rootView);
+        afterAnimationView = findViewById(R.id.afterAnimationView);
+    }
+
+
+    private void startAnimation() {
+        ViewPropertyAnimator viewPropertyAnimator = bookIconImageView.animate();
+        viewPropertyAnimator.x(470f);
+        viewPropertyAnimator.y(100f);
+        viewPropertyAnimator.setDuration(1000);
+        viewPropertyAnimator.setListener(new Animator.AnimatorListener() {
             @Override
-            public void onClick(View view) {
-                Call<Profile> call=requestService.requestGet();
-                call.enqueue(new Callback<Profile>() {
-                    @Override
-                    public void onResponse(Call<Profile> call, Response<Profile> response) {
-                        Toast.makeText(MainActivity.this,""+response.body().getMessage(),Toast.LENGTH_SHORT).show();
-                        if(response.isSuccessful())
-                            Log.e("Error","NOT SUCCESSFUL");
-                        else
-                            Log.e("Error", "SUCCESSFUL");
-                    }
+            public void onAnimationStart(Animator animation) {
 
-                    @Override
-                    public void onFailure(Call<Profile> call, Throwable t) {
-                        Toast.makeText(MainActivity.this,t.getMessage(),Toast.LENGTH_SHORT).show();
-                        Log.e("Error",t.getMessage());
-                    }
-                });
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                afterAnimationView.setVisibility(VISIBLE);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
             }
         });
     }
