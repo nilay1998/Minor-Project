@@ -1,13 +1,23 @@
 package com.example.attendancemanagement;
 
+import android.animation.Animator;
 import android.content.Intent;
+import android.os.CountDownTimer;
+import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -19,16 +29,113 @@ import com.example.attendancemanagement.Reterofit.NetworkClient;
 import com.example.attendancemanagement.Reterofit.Profile;
 import com.example.attendancemanagement.Reterofit.RequestService;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
+//public class MainActivity extends AppCompatActivity {
+//
+//    private ImageView bookIconImageView;
+//    private TextView bookITextView;
+//    private ProgressBar loadingProgressBar;
+//    private RelativeLayout rootView, afterAnimationView;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        setContentView(R.layout.activity_main);
+//        initViews();
+//        new CountDownTimer(5000, 1000) {
+//
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                bookITextView.setVisibility(GONE);
+//                loadingProgressBar.setVisibility(GONE);
+//                rootView.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorSplashText));
+//                bookIconImageView.setImageResource(R.drawable.download1);
+//                startAnimation();
+//            }
+//        }.start();
+//    }
+//
+//    private void initViews() {
+//        bookIconImageView = findViewById(R.id.bookIconImageView);
+//        bookITextView = findViewById(R.id.bookITextView);
+//        loadingProgressBar = findViewById(R.id.loadingProgressBar);
+//        rootView = findViewById(R.id.rootView);
+//        afterAnimationView = findViewById(R.id.afterAnimationView);
+//    }
+//
+//    private void startAnimation() {
+//        ViewPropertyAnimator viewPropertyAnimator = bookIconImageView.animate();
+//        viewPropertyAnimator.x(50f);
+//        viewPropertyAnimator.y(100f);
+//        viewPropertyAnimator.setDuration(1000);
+//        viewPropertyAnimator.setListener(new Animator.AnimatorListener() {
+//            @Override
+//            public void onAnimationStart(Animator animation) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationEnd(Animator animation) {
+//                afterAnimationView.setVisibility(VISIBLE);
+//            }
+//
+//            @Override
+//            public void onAnimationCancel(Animator animation) {
+//
+//            }
+//
+//            @Override
+//            public void onAnimationRepeat(Animator animation) {
+//
+//            }
+//        });
+//    }
+//}
+
 public class MainActivity extends AppCompatActivity {
     private View login_view;
     private View register_view;
+    private ImageView bookIconImageView;
+    private TextView bookITextView;
+    private ProgressBar loadingProgressBar;
+    private RelativeLayout rootView, afterAnimationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         login_view=getLayoutInflater().inflate(R.layout.activity_main,null);
         register_view=getLayoutInflater().inflate(R.layout.register,null);
         setContentView(login_view);
+        initViews();
+
+        new CountDownTimer(5000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                bookITextView.setVisibility(GONE);
+                loadingProgressBar.setVisibility(GONE);
+                rootView.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorSplashText));
+                bookIconImageView.setImageResource(R.drawable.download1);
+                startAnimation();
+            }
+        }.start();
 
         final Intent intent = new Intent(this, student.class);
 
@@ -139,6 +246,42 @@ public class MainActivity extends AppCompatActivity {
                         Log.e("Error",t.getMessage());
                     }
                 });
+            }
+        });
+    }
+
+    private void initViews() {
+        bookIconImageView = findViewById(R.id.bookIconImageView);
+        bookITextView = findViewById(R.id.bookITextView);
+        loadingProgressBar = findViewById(R.id.loadingProgressBar);
+        rootView = findViewById(R.id.rootView);
+        afterAnimationView = findViewById(R.id.afterAnimationView);
+    }
+
+    private void startAnimation() {
+        ViewPropertyAnimator viewPropertyAnimator = bookIconImageView.animate();
+        viewPropertyAnimator.x(50f);
+        viewPropertyAnimator.y(100f);
+        viewPropertyAnimator.setDuration(1000);
+        viewPropertyAnimator.setListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                afterAnimationView.setVisibility(VISIBLE);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
             }
         });
     }
