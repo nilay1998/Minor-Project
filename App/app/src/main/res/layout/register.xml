@@ -8,6 +8,16 @@
     android:orientation="vertical"
     android:paddingTop="128dp"
     tools:context=".MainActivity">
+    <TextView
+        android:gravity="center"
+        android:id="@+id/WelcomeTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create New Account!"
+        android:textColor="@color/colorBackground"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
 
     <android.support.design.widget.TextInputEditText
         android:id="@+id/name"

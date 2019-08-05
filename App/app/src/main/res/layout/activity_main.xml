@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:text="@string/welcome_back"
             android:textColor="@color/colorBackground"
-            android:textSize="25sp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
 
