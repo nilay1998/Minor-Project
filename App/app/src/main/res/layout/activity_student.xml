@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".student">
 
     <TextView
@@ -16,5 +17,41 @@
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:text="Subject: OOPS\nFaculty: Dr. Saumya Bhadauria"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:background="#2b323b"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:text="Subject: DCS\nFaculty: Dr. Gaurav Kaushal"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:background="#333c46"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:text="Subject: DAA\nFaculty: Dr. Nitish Kumar"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:background="#3b4651"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:text="Subject: CG\nFaculty: Dr. Vinal Patel"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:background="#444f5d"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:text="Subject: QTDN\nFaculty: Dr. Ajai Kumar"/>
 
 </LinearLayout>

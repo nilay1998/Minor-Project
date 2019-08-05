@@ -13,6 +13,7 @@
         android:id="@+id/percent"
         android:layout_width="match_parent"
         android:layout_height="62dp"
+        android:textColor="#000"
         android:text="Attendance: "
         android:textStyle="italic"
         android:textSize="36dp"
@@ -21,6 +22,7 @@
     <TextView
         android:paddingLeft="16dp"
         android:id="@+id/total"
+        android:textColor="#000"
         android:layout_width="match_parent"
         android:layout_height="62dp"
         android:text="Classes held: "
@@ -31,6 +33,7 @@
     <TextView
         android:paddingLeft="16dp"
         android:id="@+id/attended"
+        android:textColor="#000"
         android:layout_width="match_parent"
         android:layout_height="62dp"
         android:text="Classes attended: "

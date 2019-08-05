@@ -69,6 +69,7 @@ public class Attendance extends AppCompatActivity {
                 for (int i=0;i<response.body().getDates().length;i++)
                 {
                     TextView date=new TextView(getApplicationContext());
+                    date.setTextColor(Color.BLACK);
                     if(i<9)
                         date.setText(" "+(i+1)+":  ");
                     else
