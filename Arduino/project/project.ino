@@ -159,7 +159,8 @@ void Identify()
 void loop()
 {
   lcd.clear();
-//  Enroll();
+  //fps.DeleteAll();
+  //Enroll();
   Identify();
   delay(1000);
 }

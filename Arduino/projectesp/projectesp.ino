@@ -49,7 +49,7 @@ void loop()
             
                 HTTPClient http;   
      
-                http.begin("http://192.168.69.180:3000/api/id");     
+                http.begin("http://192.168.68.2:3000/api/id");     
                 http.addHeader("Content-Type", "application/json"); 
                
              
@@ -70,7 +70,7 @@ void loop()
             
                 HTTPClient http;   
      
-                http.begin("http://192.168.69.180:3000/api/attendance");     
+                http.begin("http://192.168.68.2:3000/api/attendance");     
                 http.addHeader("Content-Type", "application/json"); 
                
              
