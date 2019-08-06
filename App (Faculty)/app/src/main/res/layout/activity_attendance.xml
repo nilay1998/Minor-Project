@@ -13,10 +13,7 @@
         android:layout_height="44dp"
         android:background="@color/colorBackground"
         android:orientation="horizontal">
-        <View
-            android:layout_width="2dp"
-            android:layout_height="fill_parent"
-            android:background="@color/colorBackground" />
+
         <TextView
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -52,10 +49,7 @@
             android:textStyle="italic|bold"
             android:textSize="18dp"
             android:gravity="center"/>
-        <View
-            android:layout_width="2dp"
-            android:layout_height="fill_parent"
-            android:background="@color/colorBackground" />
+
     </LinearLayout>
     <View
         android:layout_width="fill_parent"

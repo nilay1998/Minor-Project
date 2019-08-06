@@ -61,14 +61,19 @@ public class Attendance extends AppCompatActivity {
             public void onResponse(Call<Profile> call, Response<Profile> response) {
                 deno=response.body().getClasses();
                 total.append(String.valueOf(deno));
-                double per=(double)attended/(double)deno;
+                double per=((double)attended/(double)deno)*100;
                 if(String.valueOf(per).length()>5)
                     percent.append(String.valueOf(per).substring(0,5)+"%");
                 else
                     percent.append(String.valueOf(per)+"%");
                 for (int i=0;i<response.body().getDates().length;i++)
                 {
+                    LinearLayout parent = new LinearLayout(getApplicationContext());
+                    parent.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                    parent.setOrientation(LinearLayout.HORIZONTAL);
+
                     TextView date=new TextView(getApplicationContext());
+                    TextView pa=new TextView(getApplicationContext());
                     date.setTextColor(Color.BLACK);
                     if(i<9)
                         date.setText(" "+(i+1)+":  ");
@@ -76,18 +81,33 @@ public class Attendance extends AppCompatActivity {
                         date.setText(""+(i+1)+": ");
                     date.append(response.body().getDates()[i]);
                     if(search(response.body().getDates()[i],arr)==-1)
-                        date.append("            Absent");
+                    {
+                        pa.setCompoundDrawablesWithIntrinsicBounds(R.drawable.circle_red,0,0,0);
+                        pa.setText("  Absent");
+                    }
                     else
-                        date.append("            Present");
+                    {
+                        pa.setCompoundDrawablesWithIntrinsicBounds(R.drawable.circle_blue,0,0,0);
+                        pa.setText("  Present");
+                    }
                     date.setId(i);
-                    date.setPadding(28,16,0,16);
+                    parent.setPadding(28,16,0,16);
                     date.setTextSize(32);
                     date.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
-                    date.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                    date.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+
+                    pa.setId(i);
+                    pa.setTextColor(Color.BLACK);
+                    pa.setPadding(140,0,0,0);
+                    pa.setTextSize(32);
+                    pa.setTypeface(Typeface.defaultFromStyle(Typeface.ITALIC));
+                    pa.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
                     View v = new View(getApplicationContext());
                     v.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,5));
                     v.setBackgroundColor(Color.parseColor("#B3B3B3"));
-                    linearLayout.addView(date);
+                    parent.addView(date);
+                    parent.addView(pa);
+                    linearLayout.addView(parent);
                     linearLayout.addView(v);
                 }
             }
