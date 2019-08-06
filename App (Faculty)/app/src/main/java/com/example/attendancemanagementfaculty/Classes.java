@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.attendancemanagementfaculty.Reterofit.MyPojo;
 import com.example.attendancemanagementfaculty.Reterofit.NetworkClient;
@@ -26,6 +27,7 @@ import retrofit2.Retrofit;
 public class Classes extends AppCompatActivity {
 
     public static int numberOfClasses;
+    Boolean state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,9 +59,15 @@ public class Classes extends AppCompatActivity {
             @Override
             public void onResponse(Call<Profile> call, Response<Profile> response) {
                 if(response.body().getisClass()==true)
+                {
                     switch1.setChecked(true);
+                    switch1.setText("ON");
+                }
                 else
+                {
                     switch1.setChecked(false);
+                    switch1.setText("OFF");
+                }
                 classNumber.setText(String.valueOf(response.body().getClasses()));
                 numberOfClasses=Integer.parseInt(classNumber.getText().toString());
                 Log.e("HAHA", "numberOfClasses: " + numberOfClasses);
@@ -74,12 +82,44 @@ public class Classes extends AppCompatActivity {
         switch1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Boolean state=switch1.isChecked();
+                state=switch1.isChecked();
+                if(state==true)
+                {
+                    switch1.setText("ON");
+                }
+                else
+                    switch1.setText("OFF");
                 Call<Profile> call1=requestService.updateClass(state);
                 call1.enqueue(new Callback<Profile>() {
                     @Override
                     public void onResponse(Call<Profile> call, Response<Profile> response) {
+                        Toast.makeText(Classes.this,""+response.body().getMessage(),Toast.LENGTH_SHORT).show();
                         Log.e("HAHA", "onResponse: "+response.body().getMessage() );
+                        if(response.body().getStatus().equals("0"))
+                        {
+                            switch1.setText("OFF");
+                            switch1.setChecked(false);
+                            state=false;
+                            Log.e("HAHA", "onResponse: 1)Class added " +state );
+                        }
+                        if(state == true)
+                        {
+                            Call<Profile> call2=requestService.addClass(1);
+                            call2.enqueue(new Callback<Profile>() {
+                                @Override
+                                public void onResponse(Call<Profile> call, Response<Profile> response) {
+                                    Log.e("HAHA", "onResponse: 3)Class added " +state);
+                                }
+
+                                @Override
+                                public void onFailure(Call<Profile> call, Throwable t) {
+
+                                }
+                            });
+                            classNumber.setText(String.valueOf(Integer.parseInt(classNumber.getText().toString())+1));
+                            numberOfClasses=Integer.parseInt(classNumber.getText().toString());
+                            Log.e("HAHA", "numberOfClasses: " + numberOfClasses);
+                        }
                     }
 
                     @Override
@@ -88,24 +128,8 @@ public class Classes extends AppCompatActivity {
                     }
                 });
 
-                if(state == true)
-                {
-                    Call<Profile> call2=requestService.addClass(1);
-                    call2.enqueue(new Callback<Profile>() {
-                        @Override
-                        public void onResponse(Call<Profile> call, Response<Profile> response) {
-                            Log.e("HAHA", "onResponse: Class added" );
-                        }
+                //Log.e("HAHA", "onResponse: 2)Class added " +state);
 
-                        @Override
-                        public void onFailure(Call<Profile> call, Throwable t) {
-
-                        }
-                    });
-                    classNumber.setText(String.valueOf(Integer.parseInt(classNumber.getText().toString())+1));
-                    numberOfClasses=Integer.parseInt(classNumber.getText().toString());
-                    Log.e("HAHA", "numberOfClasses: " + numberOfClasses);
-                }
             }
         });
 

@@ -12,6 +12,26 @@ router.get('/getf', async (req,res) =>{
 router.put('/isclass', async (req,res)=>{
     const faculty = await Faculty.findOne();
     faculty.isClass = req.body.isClass;
+    if(faculty.isClass==false)
+    {
+        await faculty.save();
+        return res.json({status:'1',message:'Success'});
+    }
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+    var yyyy = today.getFullYear();
+
+    today = dd + '/' + mm + '/' + yyyy;
+
+    if(faculty.dates.length >=0)
+    {
+        var last = faculty.dates[faculty.dates.length - 1];
+        if(today==last){
+            return res.json({status:'0',message:'Multiple classes cannot be held on a single day'});
+        }
+    }
+
     await faculty.save();
     res.json({status:'1',message:'Success'});
 });
