@@ -1,5 +1,7 @@
 package com.example.attendancemanagementfaculty.Reterofit;
 
+import java.util.Comparator;
+
 public class AllItems
 {
     private String password;
@@ -90,5 +92,19 @@ public class AllItems
     {
         this.email = email;
     }
+
+    public static Comparator<AllItems> StuRollno = new Comparator<AllItems>() {
+
+        public int compare(AllItems s1, AllItems s2) {
+
+            int rollno1 = Integer.parseInt(s1.getRollNumber());
+            int rollno2 = Integer.parseInt(s2.getRollNumber());
+
+            /*For ascending order*/
+            return rollno1-rollno2;
+
+            /*For descending order*/
+            //rollno2-rollno1;
+        }};
 
 }

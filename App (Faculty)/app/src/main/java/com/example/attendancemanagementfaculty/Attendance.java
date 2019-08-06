@@ -15,6 +15,7 @@ import com.example.attendancemanagementfaculty.Reterofit.RequestService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,6 +42,7 @@ public class Attendance extends AppCompatActivity {
                 if(response.body().getStatus().equals("1"))
                 {
                     arrayList= new ArrayList<>(Arrays.asList(response.body().getAllItems()));
+                    Collections.sort(arrayList,AllItems.StuRollno);
                     final RecyclerViewAdapter recyclerViewAdapter=new RecyclerViewAdapter(arrayList);
                     recyclerView.setAdapter(recyclerViewAdapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
