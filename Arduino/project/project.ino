@@ -6,10 +6,14 @@
 LiquidCrystal lcd(2,3,4,5,6,7);
 SoftwareSerial mySerial(10, 11);
 FPS_GT511C3 fps(12, 13); // (Arduino SS_RX = pin 10, Arduino SS_TX = pin 11)
- 
+int pir=9;
+int val=0;
+int lamp=8;
 
 void setup()
 {
+  pinMode(lamp,OUTPUT);
+  pinMode(pir,INPUT);
   Serial.begin(9600); //set up Arduino's hardware serial UART 
   delay(100);
   mySerial.begin(115200);
@@ -42,7 +46,20 @@ void Enroll()
   lcd.setCursor(0,1);
   lcd.print("Enroll #");
   lcd.println(enrollid);
-  while(fps.IsPressFinger() == false) delay(100);
+  while(fps.IsPressFinger() == false)
+  {
+    val=digitalRead(pir);
+    Serial.println(val);
+    if(val==1)
+   {
+      digitalWrite(lamp,LOW);
+    }
+    else
+    {
+      digitalWrite(lamp,HIGH);
+    }
+    delay(100);
+  }
   bool bret = fps.CaptureFinger(true);
   int iret = 0;
   if (bret != false)
@@ -57,7 +74,20 @@ void Enroll()
     lcd.println("Press same finge");
     lcd.setCursor(0,1);
     lcd.print("r again");
-    while(fps.IsPressFinger() == false) delay(100);
+    while(fps.IsPressFinger() == false)
+   {
+      val=digitalRead(pir);
+      Serial.println(val);
+      if(val==1)
+      {
+        digitalWrite(lamp,LOW);
+      }
+      else
+      {
+        digitalWrite(lamp,HIGH);
+      }
+      delay(100);
+    }
     bret = fps.CaptureFinger(true);
     if (bret != false)
     {
@@ -71,7 +101,20 @@ void Enroll()
       lcd.println("Press same finge");
       lcd.setCursor(0,1);
       lcd.print("r yet again");
-      while(fps.IsPressFinger() == false) delay(100);
+      while(fps.IsPressFinger() == false)
+      {
+        val=digitalRead(pir);
+        Serial.println(val);
+        if(val==1)
+        {
+          digitalWrite(lamp,LOW);
+        }
+        else
+        {
+          digitalWrite(lamp,HIGH);
+        }
+        delay(100);
+      }
       bret = fps.CaptureFinger(true);
       if (bret != false)
       {
@@ -115,13 +158,28 @@ void Enroll()
 
 void Identify()
 {
+  int c=0;
   while(fps.IsPressFinger() == false)
   {
-    lcd.clear();
-    lcd.println("Please press fin");
-    lcd.setCursor(0,1);
-    lcd.print("ger"); 
-    delay(100);
+    val=digitalRead(pir);
+    Serial.println(val);
+    if(val==1)
+    {
+       digitalWrite(lamp,LOW);
+    }
+    else
+    {
+      digitalWrite(lamp,HIGH);
+    }
+    if(c==0)
+    {
+      lcd.clear();
+      lcd.println("Please press fin");
+      lcd.setCursor(0,1);
+      lcd.print("ger");
+      c=1; 
+    }
+    //delay(100);
   }
   if (fps.IsPressFinger())
   {
@@ -158,6 +216,16 @@ void Identify()
 
 void loop()
 {
+  val=digitalRead(pir);
+  Serial.println(val);
+  if(val==1)
+  {
+    digitalWrite(lamp,LOW);
+  }
+  else
+  {
+    digitalWrite(lamp,HIGH);
+  }
   lcd.clear();
   //fps.DeleteAll();
   //Enroll();
