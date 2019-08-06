@@ -68,7 +68,7 @@ public class Classes extends AppCompatActivity {
                     switch1.setChecked(false);
                     switch1.setText("OFF");
                 }
-                classNumber.setText(String.valueOf(response.body().getClasses()));
+                classNumber.setText(String.valueOf(response.body().getDates().length));
                 numberOfClasses=Integer.parseInt(classNumber.getText().toString());
                 Log.e("HAHA", "numberOfClasses: " + numberOfClasses);
             }

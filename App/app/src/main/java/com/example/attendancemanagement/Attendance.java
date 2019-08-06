@@ -59,7 +59,7 @@ public class Attendance extends AppCompatActivity {
         call1.enqueue(new Callback<Profile>() {
             @Override
             public void onResponse(Call<Profile> call, Response<Profile> response) {
-                deno=response.body().getClasses();
+                deno=response.body().getDates().length;
                 total.append(String.valueOf(deno));
                 double per=((double)attended/(double)deno)*100;
                 if(String.valueOf(per).length()>5)

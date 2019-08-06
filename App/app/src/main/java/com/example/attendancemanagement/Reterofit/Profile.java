@@ -7,6 +7,9 @@ public class Profile {
     private String email;
     private String rollNumber;
     private String[] attendance;
+    private String[] dates;
+    private Boolean isClass;
+    private int classes;
 
     public String[] getDates() {
         return dates;
@@ -15,10 +18,6 @@ public class Profile {
     public void setDates(String[] dates) {
         this.dates = dates;
     }
-
-    private String[] dates;
-    private Boolean isClass;
-    private int classes;
 
     public int getClasses() {
         return classes;
