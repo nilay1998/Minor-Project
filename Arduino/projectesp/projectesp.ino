@@ -2,8 +2,8 @@
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
 
-const char* ssid = "slr";
-const char* password = "abcd12345";
+const char* ssid = "pankaj";
+const char* password = "pankaj897";
  
 void setup () {
  
@@ -50,7 +50,7 @@ void loop()
             
                 HTTPClient http;   
      
-                http.begin("http://192.168.68.2:3000/api/id");     
+                http.begin("http://192.168.43.9:3000/api/id");     
                 http.addHeader("Content-Type", "application/json"); 
                
              
@@ -71,7 +71,7 @@ void loop()
             
                 HTTPClient http;   
      
-                http.begin("http://192.168.68.2:3000/api/attendance");     
+                http.begin("http://192.168.43.9:3000/api/attendance");     
                 http.addHeader("Content-Type", "application/json"); 
                
              

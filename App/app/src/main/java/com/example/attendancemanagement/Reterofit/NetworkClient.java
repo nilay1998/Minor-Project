@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class NetworkClient {
 
 
-    public static final String BASE_URL = "http://192.168.68.2:3000/api/";
+    public static final String BASE_URL = "http://192.168.43.9:3000/api/";
     public static Retrofit retrofit;
     /*
     This public static method will return Retrofit client

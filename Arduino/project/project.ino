@@ -130,10 +130,7 @@ void Enroll()
           lcd.setCursor(0,1);
           lcd.print("sful");
           String val=String(enrollid)+":enroll";
-          if(enrollid!=0)
-          {
-            mySerial.print(val);
-          }
+          mySerial.print(val);
           delay(1000);
         }
         else
@@ -193,7 +190,7 @@ void Identify()
     {//if the fingerprint matches, provide the matching template ID
       lcd.clear();
       lcd.print("Verified ID:");
-      lcd.println(id+ " ");
+      lcd.println(id);
       if(id==0)
       return Enroll();
       String val=String(id)+":add";
