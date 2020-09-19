@@ -5,4 +5,4 @@
 - Users able to mark attendance on the device.
 - Attendance will be automaticaaly updated on the Android Application
 
-<img src="project.jpg" width="250" /> <br/> <br/>
+<img src="project.jpg" /> <br/> <br/>
